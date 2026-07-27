@@ -1,4 +1,4 @@
-name: Deploy GitHub Pages with Submodules
+name: Deploy GitHub Pages with Submodules and Obfuscation
 
 on:
   push:
@@ -24,9 +24,20 @@ jobs:
       - name: Checkout main repo with submodules
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.SUBMODULE_PAT }}  # 使用在 Repo Settings > Secrets 中設定的 SUBMODULE_PAT Token
+          token: ${{ secrets.SUBMODULE_PAT }}
           submodules: recursive
           fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Obfuscator Dependencies
+        run: npm install javascript-obfuscator cheerio
+
+      - name: Run Obfuscation Script
+        run: node scripts/obfuscate.js
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
