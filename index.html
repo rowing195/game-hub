@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>遊戲小閣 · LUDI</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0b1020;
+    --card: #141b33;
+    --card-hover: #1b2444;
+    --ink: #e8e6df;
+    --ink-dim: #9aa3bf;
+    --gold: #d4b26a;
+    --line: #2a3457;
+  }
+
+  body {
+    min-height: 100vh;
+    background: radial-gradient(ellipse at 50% -20%, #1a2547 0%, var(--bg) 60%);
+    color: var(--ink);
+    font-family: "Noto Serif TC", "PMingLiU", Georgia, serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 1.5rem 3rem;
+    overflow-x: hidden;
+  }
+
+  .stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .stars span {
+    position: absolute;
+    width: 2px; height: 2px;
+    border-radius: 50%;
+    background: #fff;
+    opacity: .6;
+    animation: twinkle 3s ease-in-out infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: .15; }
+    50% { opacity: .7; }
+  }
+
+  header { text-align: center; z-index: 1; }
+
+  .eyebrow {
+    font-size: .8rem;
+    letter-spacing: .5em;
+    text-indent: .5em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 6vw, 3rem);
+    font-weight: 600;
+    letter-spacing: .3em;
+    text-indent: .3em;
+    margin: .6rem 0 .4rem;
+  }
+
+  .subtitle {
+    color: var(--ink-dim);
+    font-size: .95rem;
+    letter-spacing: .15em;
+  }
+
+  .divider {
+    width: 120px;
+    margin: 2rem auto 2.5rem;
+    border: none;
+    border-top: 1px solid var(--line);
+    position: relative;
+  }
+  .divider::after {
+    content: "✦";
+    position: absolute;
+    top: -.7em; left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg);
+    padding: 0 .6em;
+    color: var(--gold);
+    font-size: .8rem;
+  }
+
+  .collection {
+    width: 100%;
+    max-width: 860px;
+    z-index: 1;
+  }
+
+  .group + .group { margin-top: 3rem; }
+
+  .group-title {
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+    font-size: .82rem;
+    font-weight: 600;
+    letter-spacing: .34em;
+    text-indent: .34em;
+    color: var(--gold);
+    margin-bottom: 1.3rem;
+  }
+  .group-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--line), transparent);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.4rem;
+  }
+
+  .card {
+    display: block;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1.6rem 1.5rem 1.4rem;
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform .25s ease, background .25s ease, border-color .25s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    background: var(--card-hover);
+    border-color: var(--gold);
+  }
+
+  .card .icon { font-size: 1.8rem; }
+
+  .card h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: .7rem 0 .45rem;
+    letter-spacing: .08em;
+  }
+
+  .card p {
+    font-size: .88rem;
+    line-height: 1.7;
+    color: var(--ink-dim);
+  }
+
+  .card .go {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: .8rem;
+    letter-spacing: .2em;
+    color: var(--gold);
+  }
+
+  footer {
+    margin-top: 3.5rem;
+    color: var(--ink-dim);
+    font-size: .8rem;
+    letter-spacing: .12em;
+    z-index: 1;
+    text-align: center;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+
+  <header>
+    <p class="eyebrow">Ludi · Interactive Toys</p>
+    <h1>遊戲小閣</h1>
+    <p class="subtitle">閒暇時鍛造的網頁小玩具 —— 遊戲與氛圍小品,皆可直接遊玩</p>
+  </header>
+
+  <hr class="divider">
+
+  <main class="collection">
+    <section class="group">
+      <h2 class="group-title">遊戲</h2>
+      <div class="grid">
+        <a class="card" href="games/rogue-survivor/index.html">
+          <span class="icon">🧙</span>
+          <h3>肉鴿倖存者 Rogue Survivor</h3>
+          <p>以一敵千的生存肉鴿:七位角色各擅一種武器,升級選牌、武器進化、永久強化,撐過十五分鐘。</p>
+          <span class="go">進入 →</span>
+        </a>
+
+        <a class="card" href="games/html-games/subway-run-3d.html">
+          <span class="icon">🎮</span>
+          <h3>Subway Run 3D — 方塊人</h3>
+          <p>酷跑的 3D 進化版,操控方塊小人在立體軌道上飛馳。</p>
+          <span class="go">進入 →</span>
+        </a>
+
+        <a class="card" href="games/html-games/tower-defense.html">
+          <span class="icon">🏰</span>
+          <h3>方塊塔防 Block Defense</h3>
+          <p>在軌道旁佈署四種砲塔,擋下一波波湧來的方塊敵人。</p>
+          <span class="go">進入 →</span>
+        </a>
+
+        <a class="card" href="games/arcane-realm/index.html">
+          <span class="icon">⚜️</span>
+          <h3>祕法王國 Arcane Realm</h3>
+          <p>中世紀魔法風掛機遊戲:建設城市、指派領民、與鄰國貿易。出征採即時戰術制 —— 排陣型、算兵種相剋、臨陣下令。</p>
+          <span class="go">進入 →</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2 class="group-title">氛圍小品</h2>
+      <div class="grid">
+        <a class="card" href="games/html-games/cat-stargazing.html">
+          <span class="icon">🐈‍⬛</span>
+          <h3>星夜下的貓</h3>
+          <p>陪一隻貓靜靜坐在屋頂上,仰望流轉的星空。一段放鬆的互動小品。</p>
+          <span class="go">進入 →</span>
+        </a>
+
+        <a class="card" href="games/html-games/rain-sim.html">
+          <span class="icon">🌧</span>
+          <h3>雨夜模擬器</h3>
+          <p>聆聽雨聲、看雨滴落在窗上。可調節雨勢的沉浸式雨夜場景。</p>
+          <span class="go">進入 →</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><a href="https://github.com/rowing195/html-games">GitHub</a> · rowing195</p>
+  </footer>
+
+  <script>
+    const stars = document.getElementById('stars');
+    for (let i = 0; i < 60; i++) {
+      const s = document.createElement('span');
+      s.style.left = Math.random() * 100 + '%';
+      s.style.top = Math.random() * 100 + '%';
+      s.style.animationDelay = Math.random() * 3 + 's';
+      s.style.transform = 'scale(' + (0.5 + Math.random()) + ')';
+      stars.appendChild(s);
+    }
+  </script>
+</body>
+</html>
