@@ -23,6 +23,7 @@
 
 | 作品 | 說明 |
 |------|------|
+| [🪶 羽毛筆繪製奇幻地圖](games/html-games/fantasy_map.html) | 看著羽毛筆在老舊羊皮紙上優雅勾勒出奇幻大陸、山脈、河流與城池標示。 |
 | [🐈‍⬛ 星夜下的貓](games/html-games/cat-stargazing.html) | 陪一隻貓靜靜坐在屋頂上，仰望流轉的星空。 |
 | [🌧 雨夜模擬器](games/html-games/rain-sim.html) | 聆聽雨聲、看雨滴落在窗上。可調節雨勢的沉浸式雨夜場景。 |
 
