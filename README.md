@@ -19,13 +19,14 @@
 
 ## 🌙 氛圍小品
 
-不以輸贏為目的，單純的互動與氛圍體驗。
+不以輸贏為目的，單純的互動、敘事與氛圍體驗。
 
 | 作品 | 說明 |
 |------|------|
 | [🪶 羽毛筆繪製奇幻地圖](games/html-games/fantasy_map.html) | 看著羽毛筆在老舊羊皮紙上優雅勾勒出奇幻大陸、山脈、河流與城池標示。 |
 | [🐈‍⬛ 星夜下的貓](games/html-games/cat-stargazing.html) | 陪一隻貓靜靜坐在屋頂上，仰望流轉的星空。 |
 | [🌧 雨夜模擬器](games/html-games/rain-sim.html) | 聆聽雨聲、看雨滴落在窗上。可調節雨勢的沉浸式雨夜場景。 |
+| [🐦 菲比啾比與諾諾](games/html-games/fhibichubi-nono/index.html) | 四張動圖一路滾成一部連續劇。捲動就是時間軸，往回捲會完整倒帶。 |
 
 ---
 
@@ -40,7 +41,7 @@ README.md               專案說明
 games/
 ├── rogue-survivor/     獨立專案 (Submodule)
 ├── arcane-realm/       獨立專案 (Submodule)
-└── html-games/         單檔小遊戲專案 (Submodule)
+└── html-games/         小品作品集 (Submodule)
 ```
 
 ## 本機執行
