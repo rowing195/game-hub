@@ -1,6 +1,7 @@
 [submodule "games/rogue-survivor"]
 	path = games/rogue-survivor
 	url = https://github.com/rowing195/rogue-survivor.git
+	branch = main
 [submodule "games/arcane-realm"]
 	path = games/arcane-realm
 	url = https://github.com/rowing195/arcane-realm.git
