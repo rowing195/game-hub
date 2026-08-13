@@ -8,19 +8,27 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --bg: #0b1020;
-    --card: #141b33;
-    --card-hover: #1b2444;
-    --ink: #e8e6df;
-    --ink-dim: #9aa3bf;
-    --gold: #d4b26a;
-    --line: #2a3457;
+    --bg-1: #1c130b;
+    --bg-2: #0f0a05;
+    --box-wall: #3d2a17;
+    --box-wall-deep: #241708;
+    --cell-hi: #e8c99a;
+    --cell: #d9b586;
+    --cell-shadow: #b8905c;
+    --ink: #3a2414;
+    --ink-soft: #5a4028;
+    --cream: #ecdfc4;
+    --cream-dim: #b9a179;
+    --gold: #c9a45c;
+    --gold-bright: #e8c98a;
+    --gold-deep: #5c3a12;
+    --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.22' numOctaves='3' seed='11'/><feColorMatrix values='0 0 0 0 0.16  0 0 0 0 0.09  0 0 0 0 0.04  0 0 0 0.28 0'/></filter><rect width='220' height='220' filter='url(%23g)'/></svg>");
   }
 
   body {
     min-height: 100vh;
-    background: radial-gradient(ellipse at 50% -20%, #1a2547 0%, var(--bg) 60%);
-    color: var(--ink);
+    background: radial-gradient(ellipse at 50% -10%, var(--bg-1) 0%, var(--bg-2) 70%);
+    color: var(--cream);
     font-family: "Noto Serif TC", "PMingLiU", Georgia, serif;
     display: flex;
     flex-direction: column;
@@ -29,23 +37,28 @@
     overflow-x: hidden;
   }
 
-  .stars {
+  /* 木屑微塵:飄在箱子上方的光塵,取代原本的星空 twinkle */
+  .dust {
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: 0;
   }
-  .stars span {
+  .dust span {
     position: absolute;
-    width: 2px; height: 2px;
+    width: 3px; height: 3px;
     border-radius: 50%;
-    background: #fff;
-    opacity: .6;
-    animation: twinkle 3s ease-in-out infinite;
+    background: var(--gold-bright);
+    opacity: 0;
+    filter: blur(.3px);
+    animation: drift 8s ease-in-out infinite;
   }
-  @keyframes twinkle {
-    0%, 100% { opacity: .15; }
-    50% { opacity: .7; }
+  @keyframes drift {
+    0%   { opacity: 0;   transform: translate(0, 0); }
+    15%  { opacity: .55; }
+    50%  { opacity: .3;  transform: translate(6px, -16px); }
+    85%  { opacity: .5; }
+    100% { opacity: 0;   transform: translate(-5px, -30px); }
   }
 
   header { text-align: center; z-index: 1; }
@@ -64,10 +77,12 @@
     letter-spacing: .3em;
     text-indent: .3em;
     margin: .6rem 0 .4rem;
+    color: var(--cream);
+    text-shadow: 0 1px 0 rgba(255, 230, 190, .12), 0 2px 4px rgba(0, 0, 0, .55);
   }
 
   .subtitle {
-    color: var(--ink-dim);
+    color: var(--cream-dim);
     font-size: .95rem;
     letter-spacing: .15em;
   }
@@ -76,7 +91,7 @@
     width: 120px;
     margin: 2rem auto 2.5rem;
     border: none;
-    border-top: 1px solid var(--line);
+    border-top: 1px solid rgba(201, 164, 92, .3);
     position: relative;
   }
   .divider::after {
@@ -84,20 +99,32 @@
     position: absolute;
     top: -.7em; left: 50%;
     transform: translateX(-50%);
-    background: var(--bg);
+    background: #150e07;
     padding: 0 .6em;
     color: var(--gold);
     font-size: .8rem;
   }
 
+  /* 木箱本體:整組收藏都裝在裡面,牆板用深色木紋,凹陷陰影營造「往下看進箱子」的感覺 */
   .collection {
     width: 100%;
-    max-width: 860px;
+    max-width: 900px;
     z-index: 1;
+    background-image: var(--grain), linear-gradient(165deg, var(--box-wall), var(--box-wall-deep));
+    background-blend-mode: multiply;
+    background-size: 220px 220px, 100% 100%;
+    border: 8px solid var(--box-wall-deep);
+    border-radius: 6px;
+    padding: 2.2rem 2rem;
+    box-shadow:
+      inset 0 0 50px rgba(0, 0, 0, .55),
+      inset 0 2px 0 rgba(255, 220, 170, .06),
+      0 25px 60px rgba(0, 0, 0, .55);
   }
 
-  .group + .group { margin-top: 3rem; }
+  .group + .group { margin-top: 2.6rem; }
 
+  /* 分格標籤:像釘在箱子隔板上的木牌 */
   .group-title {
     display: flex;
     align-items: center;
@@ -106,76 +133,95 @@
     font-weight: 600;
     letter-spacing: .34em;
     text-indent: .34em;
-    color: var(--gold);
+    color: var(--gold-bright);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, .4);
     margin-bottom: 1.3rem;
   }
   .group-title::after {
     content: "";
     flex: 1;
     height: 1px;
-    background: linear-gradient(90deg, var(--line), transparent);
+    background: linear-gradient(90deg, rgba(232, 201, 138, .35), transparent);
   }
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.4rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
   }
 
+  /* 每個作品是箱子裡的一格木格:淺色原木,微凹陷,邊上有木紋 */
   .card {
     display: block;
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 1.6rem 1.5rem 1.4rem;
+    position: relative;
+    background-image: var(--grain), linear-gradient(175deg, var(--cell-hi), var(--cell) 55%, var(--cell-shadow));
+    background-blend-mode: multiply;
+    background-size: 220px 220px, 100% 100%;
+    border: 1px solid rgba(61, 42, 23, .5);
+    border-radius: 5px;
+    padding: 1.5rem 1.4rem 1.3rem;
     text-decoration: none;
     color: var(--ink);
-    transition: transform .25s ease, background .25s ease, border-color .25s ease;
+    box-shadow:
+      inset 0 2px 5px rgba(36, 23, 8, .35),
+      inset 0 -1px 0 rgba(255, 240, 210, .25),
+      0 3px 8px rgba(0, 0, 0, .25);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
   }
   .card:hover {
-    transform: translateY(-4px);
-    background: var(--card-hover);
+    transform: scale(1.02);
     border-color: var(--gold);
+    box-shadow:
+      inset 0 2px 5px rgba(36, 23, 8, .3),
+      inset 0 -1px 0 rgba(255, 240, 210, .3),
+      0 10px 22px rgba(0, 0, 0, .35),
+      0 0 0 1px rgba(201, 164, 92, .4),
+      0 0 26px rgba(201, 164, 92, .25);
   }
 
-  .card .icon { font-size: 1.8rem; }
+  .card .icon {
+    font-size: 1.8rem;
+    filter: drop-shadow(0 1px 1px rgba(255, 255, 255, .3));
+  }
 
   .card h3 {
     font-size: 1.15rem;
     font-weight: 600;
     margin: .7rem 0 .45rem;
-    letter-spacing: .08em;
+    letter-spacing: .06em;
+    color: var(--ink);
   }
 
   .card p {
     font-size: .88rem;
     line-height: 1.7;
-    color: var(--ink-dim);
+    color: var(--ink-soft);
   }
 
   .card .model {
     display: inline-block;
     margin: -.15rem 0 .5rem;
-    padding: .12rem .5rem;
-    border: 1px solid var(--line);
-    border-radius: 999px;
+    padding: .1rem .5rem;
+    border: 1px solid rgba(61, 42, 23, .4);
+    border-radius: 3px;
+    background: rgba(255, 250, 240, .35);
     font-size: .68rem;
     letter-spacing: .1em;
-    color: var(--ink-dim);
-    opacity: .75;
+    color: var(--ink-soft);
   }
 
   .card .go {
     display: inline-block;
     margin-top: 1rem;
     font-size: .8rem;
+    font-weight: 600;
     letter-spacing: .2em;
-    color: var(--gold);
+    color: var(--gold-deep);
   }
 
   footer {
-    margin-top: 3.5rem;
-    color: var(--ink-dim);
+    margin-top: 3.2rem;
+    color: var(--cream-dim);
     font-size: .8rem;
     letter-spacing: .12em;
     z-index: 1;
@@ -186,7 +232,7 @@
 </style>
 </head>
 <body>
-  <div class="stars" id="stars"></div>
+  <div class="dust" id="dust"></div>
 
   <header>
     <p class="eyebrow">Ludi · Interactive Toys</p>
@@ -274,14 +320,15 @@
   </footer>
 
   <script>
-    const stars = document.getElementById('stars');
-    for (let i = 0; i < 60; i++) {
+    const dust = document.getElementById('dust');
+    for (let i = 0; i < 28; i++) {
       const s = document.createElement('span');
       s.style.left = Math.random() * 100 + '%';
       s.style.top = Math.random() * 100 + '%';
-      s.style.animationDelay = Math.random() * 3 + 's';
-      s.style.transform = 'scale(' + (0.5 + Math.random()) + ')';
-      stars.appendChild(s);
+      s.style.animationDelay = Math.random() * 6 + 's';
+      s.style.animationDuration = (6 + Math.random() * 5) + 's';
+      s.style.transform = 'scale(' + (0.4 + Math.random() * 1.2) + ')';
+      dust.appendChild(s);
     }
   </script>
 </body>
