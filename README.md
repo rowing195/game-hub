@@ -1,10 +1,12 @@
 # 玩具箱 · Ludi
 
-閒暇時鍛造的網頁小玩具 —— 遊戲與氛圍小品，皆可直接遊玩。
+閒暇時浪費 token 的網頁小玩具 —— 遊戲與氛圍小品，皆可直接遊玩。
 
 **▶ 線上遊玩：https://rowing195.github.io/game-hub/**
 
 全部都是純前端（HTML / CSS / JavaScript），不需安裝、不需後端，點開就跑。
+
+下方連結因為遊戲 Submodule 沒有公開，因此暫時無法使用與 clone
 
 ---
 
