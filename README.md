@@ -17,6 +17,8 @@
 | [🧙 肉鴿倖存者 Rogue Survivor](games/rogue-survivor/) | 以一敵千的生存肉鴿：七位角色各擅一種武器，升級選牌、武器進化、永久強化，撐過十五分鐘。 |
 | [🎮 Subway Run 3D — 方塊人](games/html-games/subway-run-3d.html) | 酷跑的 3D 進化版，操控方塊小人在立體軌道上飛馳。 |
 | [🏰 方塊塔防 Block Defense](games/html-games/tower-defense.html) | 在軌道旁佈署四種砲塔，擋下一波波湧來的方塊敵人。 |
+| [🐍 貪吃蛇](games/html-games/snake.html) | 經典貪吃蛇，方向鍵 / WASD 操作，本機記錄最高分。 |
+| [🧱 俄羅斯方塊](games/html-games/tetris.html) | 進場可選單人練習或雙人對戰；單人消多行有分數加成、即時彈出加分動畫，並記錄本機排行榜前 10 名。雙人對戰可再選競技模式或道具模式（超載攻擊/迷霧/加速/反轉/護盾，分數越高效果越強）。 |
 | [⚜️ 祕法王國 Arcane Realm](games/arcane-realm/) | 中世紀魔法風掛機遊戲：建設城市、指派領民、與鄰國貿易。出征是即時戰術制 —— 排陣型、算兵種相剋、臨陣下令。 |
 
 ## 🌙 氛圍小品
