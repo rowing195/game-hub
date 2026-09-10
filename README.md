@@ -20,6 +20,7 @@
 | [🐍 貪吃蛇](games/html-games/snake.html) | 經典貪吃蛇，方向鍵 / WASD 操作，本機記錄最高分。 |
 | [🧱 俄羅斯方塊](games/html-games/tetris.html) | 進場可選單人練習或雙人對戰；單人消多行有分數加成、即時彈出加分動畫，並記錄本機排行榜前 10 名。雙人對戰可再選競技模式或道具模式（超載攻擊/迷霧/加速/反轉/護盾，分數越高效果越強）。 |
 | [⚜️ 祕法王國 Arcane Realm](games/arcane-realm/) | 中世紀魔法風掛機遊戲：建設城市、指派領民、與鄰國貿易。出征是即時戰術制 —— 排陣型、算兵種相剋、臨陣下令。 |
+| [🎯 FPS Arena](games/fps-arena/) | three.js 的第一人稱射擊：彈道是真的在飛（有質量、初速、空氣阻力與重力），190 公尺的跑道讓下墜與提前量看得出來。兩張地圖、三種模式（擊殺競賽 / 陣地戰 / 推進作戰），敵人會找掩體、蹲下、探頭。 |
 
 ## 🌙 氛圍小品
 
@@ -45,6 +46,7 @@ README.md               專案說明
 games/
 ├── rogue-survivor/     獨立專案 (Submodule)
 ├── arcane-realm/       獨立專案 (Submodule)
+├── fps-arena/          獨立專案 (Submodule)
 └── html-games/         小品作品集 (Submodule)
 ```
 

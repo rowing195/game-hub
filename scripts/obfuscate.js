@@ -25,7 +25,10 @@ function getAllFiles(dirPath, arrayOfFiles = []) {
 
   files.forEach((file) => {
     const fullPath = path.join(dirPath, file);
-    if (file === '.git' || file === 'node_modules' || file === '.github' || file === 'scripts') {
+    // vendor/ 放的是第三方套件的建置產物(three.js、GSAP、Lenis),原始碼本來就是公開的,
+    // 混淆它只會拖慢部署、把體積吹大,還多一份壞掉的風險。tests/ 不是給玩家跑的。
+    if (file === '.git' || file === 'node_modules' || file === '.github' || file === 'scripts' ||
+        file === 'vendor' || file === 'tests') {
       return;
     }
 

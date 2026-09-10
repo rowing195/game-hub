@@ -8,3 +8,6 @@
 [submodule "games/html-games"]
 	path = games/html-games
 	url = https://github.com/rowing195/html-games.git
+[submodule "games/fps-arena"]
+	path = games/fps-arena
+	url = https://github.com/rowing195/fps-arena.git
