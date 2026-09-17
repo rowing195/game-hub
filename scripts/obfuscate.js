@@ -20,6 +20,10 @@ const obfuscationOptions = {
   unicodeEscapeSequence: false
 };
 
+const JS_MIME_TYPES = new Set([
+  'text/javascript', 'application/javascript', 'application/ecmascript', 'text/ecmascript'
+]);
+
 function getAllFiles(dirPath, arrayOfFiles = []) {
   const files = fs.readdirSync(dirPath);
 
@@ -72,8 +76,11 @@ function processFiles(rootDirectory) {
         $('script').each((i, el) => {
           const src = $(el).attr('src');
           const scriptContent = $(el).html();
+          // 只混淆真正的 JS:importmap、JSON、模板等資料型 <script> 不是程式碼,丟進混淆器會解析失敗
+          const type = ($(el).attr('type') || '').trim().toLowerCase();
+          const isJs = type === '' || type === 'module' || JS_MIME_TYPES.has(type);
 
-          if (!src && scriptContent && scriptContent.trim()) {
+          if (!src && isJs && scriptContent && scriptContent.trim()) {
             try {
               const obfuscated = JavaScriptObfuscator.obfuscate(scriptContent, obfuscationOptions).getObfuscatedCode();
               $(el).html(obfuscated);
