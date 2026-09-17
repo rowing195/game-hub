@@ -31,8 +31,9 @@ function getAllFiles(dirPath, arrayOfFiles = []) {
     const fullPath = path.join(dirPath, file);
     // vendor/ 放的是第三方套件的建置產物(three.js、GSAP、Lenis),原始碼本來就是公開的,
     // 混淆它只會拖慢部署、把體積吹大,還多一份壞掉的風險。tests/ 不是給玩家跑的。
+    // assets/ 是素材與資料(例如星夜下的貓以 .js 包裝的 base64 模型),不是程式碼。
     if (file === '.git' || file === 'node_modules' || file === '.github' || file === 'scripts' ||
-        file === 'vendor' || file === 'tests') {
+        file === 'vendor' || file === 'tests' || file === 'assets') {
       return;
     }
 
