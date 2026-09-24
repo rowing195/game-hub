@@ -75,7 +75,7 @@
 | 作品 | 模型 | 說明 |
 |------|------|------|
 | [🪶 羽毛筆繪製奇幻地圖](games/html-games/fantasy_map.html) | Gemini 3.6 Flash | 看著羽毛筆在老舊羊皮紙上優雅勾勒出奇幻大陸、山脈、河流與城池標示。 |
-| [🐈‍⬛ 星夜下的貓](games/html-games/cat-stargazing.html) | Fable 5 | 陪一隻貓靜靜坐在屋頂上，仰望流轉的星空。一段放鬆的互動小品。 |
+| [🐈‍⬛ 星夜下的貓](games/html-games/cat-stargazing.html) | Fable 5 | 夜空下的草原，一隻貓在樹旁不停轉圈，螢火蟲飛舞、流星劃過；右上面板可調視角、星空與風。一段放鬆的互動小品。 |
 | [🌧 雨夜模擬器](games/html-games/rain-sim.html) | Fable 5 | 聆聽雨聲、看雨滴落在窗上。可調節雨勢的沉浸式雨夜場景。 |
 | [🐦 菲比啾比與諾諾](games/html-games/fhibichubi-nono/index.html) | Opus 5 | 四張動圖一路滾成一部連續劇。捲動就是時間軸，往回捲會完整倒帶。 |
 
@@ -89,7 +89,7 @@
 | 🔩 | **模組化** | <ul><li>每款遊戲獨立版控、獨立開發</li><li>`games/html-games` 收錄小品，大型專案各自獨立</li></ul> |
 | 🔌 | **整合** | <ul><li>GitHub Actions 以 `SUBMODULE_PAT` 拉取私有子模組</li><li>`actions/deploy-pages` 部署到 GitHub Pages</li></ul> |
 | 🛡️ | **安全** | <ul><li>部署前以 `javascript-obfuscator` 混淆 `.js` 與內嵌 `<script>`</li><li>跳過 `vendor/`、`assets/`、`tests/` 與非 JS 的 `<script>`（importmap、JSON）</li></ul> |
-| 📦 | **相依** | <ul><li>執行期：無（three.js 等套件由各子專案自帶）</li><li>部署期：`javascript-obfuscator`、`cheerio`（CI 內即時安裝）</li></ul> |
+| 📦 | **相依** | <ul><li>執行期：無 npm 相依；three.js 由各作品自帶（Subway Run 3D 內嵌、FPS Arena 放在 <code>vendor/</code>），星夜下的貓則從 jsDelivr CDN 載入</li><li>部署期：`javascript-obfuscator`、`cheerio`（CI 內即時安裝）</li></ul> |
 
 ---
 
