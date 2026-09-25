@@ -1,0 +1,54 @@
+name: Update Submodules
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: "update-submodules"
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main repo with submodules
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.SUBMODULE_PAT }}
+          submodules: recursive
+
+      - name: Pull latest commit of every submodule
+        run: git submodule update --remote --recursive
+
+      - name: Commit and push pointer changes
+        id: commit
+        run: |
+          if git diff --quiet; then
+            echo "所有 submodule 都已是最新"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          changed=$(git diff --name-only | xargs -n1 basename | paste -sd, - | sed 's/,/, /g')
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git commit -am "chore: 自動更新 submodule（${changed}）"
+
+          # checkout 把 SUBMODULE_PAT 設成了 github.com 的認證標頭；推回本 repo 改用 GITHUB_TOKEN，
+          # 才不需要 PAT 對 game-hub 有寫入權限
+          git config --local --unset-all http.https://github.com/.extraheader
+          git push "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" HEAD:main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      # GITHUB_TOKEN 推送的 commit 不會觸發 deploy.yml 的 push 事件，所以直接派發一次部署
+      - name: Trigger deploy
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref main
