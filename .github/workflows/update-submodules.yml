@@ -1,8 +1,9 @@
 name: Update Submodules
 
 on:
-  schedule:
-    - cron: "0 * * * *"
+  # 各遊戲 repo 推送到 main 時，由其 notify-game-hub.yml 發送此事件
+  repository_dispatch:
+    types: [submodule-updated]
   workflow_dispatch:
 
 permissions:
