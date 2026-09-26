@@ -21,6 +21,9 @@ jobs:
       - name: Checkout main repo with submodules
         uses: actions/checkout@v4
         with:
+          # 不指定 ref 會 checkout GITHUB_SHA，也就是事件「建立當下」的 main；
+          # 在 concurrency 排隊期間前一輪可能已推上新 commit，建在舊 commit 上推送會被拒
+          ref: main
           token: ${{ secrets.SUBMODULE_PAT }}
           submodules: recursive
 
