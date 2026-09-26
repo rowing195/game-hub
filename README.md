@@ -78,6 +78,7 @@
 | [🪶 羽毛筆繪製奇幻地圖](games/html-games/fantasy_map.html) | Gemini 3.6 Flash | 看著羽毛筆在老舊羊皮紙上優雅勾勒出奇幻大陸、山脈、河流與城池標示。 |
 | [🐈‍⬛ 星夜下的貓](games/html-games/cat-stargazing.html) | Fable 5 | 夜空下的草原，一隻貓在樹旁不停轉圈，螢火蟲飛舞、流星劃過；右上面板可調視角、星空與風。一段放鬆的互動小品。 |
 | [🌧 雨夜模擬器](games/html-games/rain-sim.html) | Fable 5 | 聆聽雨聲、看雨滴落在窗上。可調節雨勢的沉浸式雨夜場景。 |
+| [🏊 泳池水波](games/html-games/pool-ripples.html) | Opus 5.5 | 陽光下的泳池，滑鼠劃過水面拖出漣漪，甩快了會濺起水花；池底的焦散、折射與天空倒影都是即時算的。 |
 | [🐦 菲比啾比與諾諾](games/html-games/fhibichubi-nono/index.html) | Opus 5 | 四張動圖一路滾成一部連續劇。捲動就是時間軸，往回捲會完整倒帶。 |
 
 ---
